@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantilla | HUGUS FC</title>
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="icon" href="/imag/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+  <nav class="solid" id="mainNav"><div class="nav-i"><a href="index.html" class="nav-brand"><div class="nav-brand-logo"><img src="/imag/logo.png" alt="H" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1.1rem;color:#C9A227\'>H</span>'"></div><div class="nav-brand-text">HUGUS FC</div></a><div class="nav-right"><a href="index.html" class="btn-nav-acceder"><i class="fas fa-arrow-left"></i> Inicio</a></div></div></nav>
+  <div class="page-wrap">
+    <div class="page-hero"><div class="breadcrumb"><a href="index.html">Inicio</a> / Plantilla</div><h2 class="stit">PLANTILLA <span class="g">2025</span></h2></div>
+    <div class="si"><div class="plantilla-grid" id="plantillaGrid"><div class="loading-state"><div class="loading-spinner"></div>Cargando...</div></div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">&copy; 2025 <span>HUGUS FC</span></div><div class="footer-copy">Dios &middot; Familia &middot; F&uacute;tbol</div></div></div></footer>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const j = await api('/api/jugadores');
+      document.getElementById('plantillaGrid').innerHTML = j.map(p => `<div class="player-card reveal"><div class="player-num-area"><div class="player-num">${p.numero}</div><div class="player-pos-badge">${p.posicion}</div></div><div class="player-body"><div class="player-name">${p.nombre}</div><div class="player-detail">${p.detalle||''}</div></div></div>`).join('');
+      observeReveals();
+    });
+  </script>
+</body>
+</html>

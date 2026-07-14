@@ -1,0 +1,542 @@
+.hero {
+/* Posicionamiento */
+  position: relative;
+
+  /* Modelo de caja */
+  display: flex;
+  overflow: hidden;
+
+  /* Flexbox y Grid */
+  align-items: center;
+  justify-content: center;
+
+  /* Dimensiones */
+  min-height: 100vh;
+
+  /* Fondos */
+  background: var(--black);}
+
+.hero-atmo {
+/* Posicionamiento */
+  position: absolute;
+
+  /* Fondos */
+  background: radial-gradient(ellipse 80% 60% at 50% 10%,rgba(22,51,39,.6) 0%,transparent 65%),radial-gradient(ellipse 60% 60% at 50% 90%,rgba(6,9,6,.9) 0%,transparent 70%);
+
+  /* Otras propiedades */
+  inset: 0;}
+
+.hero-spot {
+/* Posicionamiento */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* Dimensiones */
+  width: 600px;
+  height: 600px;
+
+  /* Fondos */
+  background: radial-gradient(circle,rgba(201,162,39,.07) 0%,transparent 65%);
+
+  /* Interactividad */
+  pointer-events: none;
+
+  /* Otras propiedades */
+  transform: translate(-50%,-58%);}
+
+.hero-content {
+/* Posicionamiento */
+  position: relative;
+  z-index: 2;
+
+  /* Relleno */
+  padding: 100px 20px 60px;
+
+  /* Tipografía */
+  text-align: center;
+
+  /* Transiciones y animaciones */
+  animation: heroIn 1s cubic-bezier(.22,1,.36,1) .3s both;}
+
+.hero-shield-wrap {
+/* Posicionamiento */
+  position: relative;
+
+  /* Dimensiones */
+  width: clamp(160px,30vw,260px);
+  height: clamp(160px,30vw,260px);
+
+  /* Márgenes */
+  margin: 0 auto 24px;}
+
+.hero-shield-ring {
+/* Posicionamiento */
+  position: absolute;
+
+  /* Bordes */
+  border-radius: 50%;
+  border: 1px solid rgba(201,162,39,.18);
+
+  /* Transiciones y animaciones */
+  animation: shieldSpin 20s linear infinite;
+
+  /* Otras propiedades */
+  inset: -16px;}
+
+.hero-shield-ring::after {
+/* Posicionamiento */
+  position: absolute;
+
+  /* Bordes */
+  border-radius: 50%;
+
+  /* Colores y efectos */
+  box-shadow: 0 0 60px rgba(201,162,39,.08);
+  opacity: .95;
+
+  /* Otras propiedades */
+  content: '';
+  inset: -34px;}
+
+.hero-shield-ring::before {
+/* Posicionamiento */
+  position: absolute;
+  top: 50%;
+  left: -3px;
+
+  /* Dimensiones */
+  width: 6px;
+  height: 6px;
+
+  /* Bordes */
+  border-radius: 50%;
+
+  /* Fondos */
+  background: var(--gold);
+
+  /* Colores y efectos */
+  box-shadow: 0 0 10px var(--gold);
+
+  /* Otras propiedades */
+  content: '';
+  transform: translateY(-50%);}
+
+.hero-escudo {
+/* Modelo de caja */
+  overflow: hidden;
+  display: flex;
+
+  /* Flexbox y Grid */
+  align-items: center;
+  justify-content: center;
+
+  /* Dimensiones */
+  width: 100%;
+  height: 100%;
+
+  /* Bordes */
+  border-radius: 50%;
+  border: 3px solid rgba(201,162,39,.6);
+
+  /* Fondos */
+  background: var(--green3);
+
+  /* Colores y efectos */
+  box-shadow: var(--glow-gold),var(--glow-green),inset 0 0 48px rgba(0,0,0,.45);
+
+  /* Transiciones y animaciones */
+  animation: floatY 4.5s ease-in-out infinite;}
+
+.hero-escudo img {
+/* Dimensiones */
+  width: 78%;
+  height: 78%;
+
+  /* Bordes */
+  border-radius: 50%;
+
+  /* Otras propiedades */
+  object-fit: contain;
+  filter: drop-shadow(0 8px 30px rgba(0,0,0,.55));}
+
+.hero-eyebrow {
+/* Modelo de caja */
+  display: inline-flex;
+
+  /* Flexbox y Grid */
+  align-items: center;
+  gap: 10px;
+
+  /* Márgenes */
+  margin-bottom: 12px;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: .65rem;
+  text-transform: uppercase;
+
+  /* Colores y efectos */
+  color: rgba(201,162,39,.7);
+
+  /* Otras propiedades */
+  letter-spacing: .4em;}
+
+.hero-eyebrow::before, .hero-eyebrow::after {
+/* Dimensiones */
+  width: 20px;
+  height: 1px;
+
+  /* Fondos */
+  background: rgba(201,162,39,.4);
+
+  /* Otras propiedades */
+  content: '';}
+
+.hero-title {
+/* Tipografía */
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem,12vw,6.5rem);
+  line-height: .86;
+
+  /* Colores y efectos */
+  color: var(--white);
+  text-shadow: 0 0 36px rgba(201,162,39,.15),0 8px 32px rgba(0,0,0,.6);
+
+  /* Otras propiedades */
+  letter-spacing: .05em;}
+
+.hero-title .g {
+/* Colores y efectos */
+  color: var(--gold);
+  text-shadow: 0 0 48px rgba(201,162,39,.35);}
+
+.hero-sub {
+/* Márgenes */
+  margin-top: 10px;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  font-size: .86rem;
+
+  /* Colores y efectos */
+  color: rgba(245,240,232,.78);
+
+  /* Otras propiedades */
+  letter-spacing: .12em;}
+
+.hero-rule {
+/* Dimensiones */
+  width: clamp(100px,30vw,180px);
+  height: 1px;
+
+  /* Márgenes */
+  margin: 16px auto;
+
+  /* Fondos */
+  background: linear-gradient(90deg,transparent,var(--gold),transparent);}
+
+.hero-lema {
+/* Márgenes */
+  margin-bottom: 6px;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: clamp(.7rem,2vw,.9rem);
+  text-transform: uppercase;
+
+  /* Colores y efectos */
+  color: var(--cream);
+  opacity: .5;
+
+  /* Otras propiedades */
+  letter-spacing: .35em;}
+
+.hero-motto {
+/* Márgenes */
+  margin-bottom: 32px;
+
+  /* Tipografía */
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem,4vw,2rem);
+
+  /* Colores y efectos */
+  color: var(--gold);
+
+  /* Otras propiedades */
+  letter-spacing: .12em;}
+
+.hero-btns {
+/* Modelo de caja */
+  display: inline-flex;
+
+  /* Flexbox y Grid */
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;}
+
+.scroll-hint {
+/* Posicionamiento */
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+
+  /* Modelo de caja */
+  display: flex;
+
+  /* Flexbox y Grid */
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: .6rem;
+  text-transform: uppercase;
+
+  /* Colores y efectos */
+  color: var(--grey);
+
+  /* Transiciones y animaciones */
+  animation: scrollBounce 2.5s ease infinite;
+
+  /* Otras propiedades */
+  transform: translateX(-50%);
+  letter-spacing: .3em;}
+
+.scroll-hint::after {
+/* Dimensiones */
+  width: 1px;
+  height: 30px;
+
+  /* Fondos */
+  background: linear-gradient(to bottom,var(--gold),transparent);
+
+  /* Otras propiedades */
+  content: '';}
+
+#preloader {
+/* Posicionamiento */
+  position: fixed;
+  z-index: 9999;
+
+  /* Modelo de caja */
+  display: flex;
+
+  /* Flexbox y Grid */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  /* Fondos */
+  background: radial-gradient(circle at 50% 30%,rgba(201,162,39,.18) 0%,transparent 50%),radial-gradient(circle at 50% 80%,rgba(12,28,18,.8) 0%,transparent 60%),linear-gradient(160deg,#030504 0%,#0a0f0a 50%,#060c06 100%);
+
+  /* Transiciones y animaciones */
+  transition: opacity .9s cubic-bezier(.4,0,.2,1),visibility .9s;
+
+  /* Otras propiedades */
+  inset: 0;}
+
+#preloader.hide {
+/* Colores y efectos */
+  opacity: 0;
+
+  /* Interactividad */
+  pointer-events: none;
+
+  /* Otras propiedades */
+  visibility: hidden;}
+
+.pre-ring {
+/* Posicionamiento */
+  position: absolute;
+
+  /* Dimensiones */
+  width: 420px;
+  height: 420px;
+
+  /* Bordes */
+  border-radius: 50%;
+  border: 1px solid rgba(201,162,39,.12);
+
+  /* Transiciones y animaciones */
+  animation: ringRotate 18s linear infinite;}
+
+.pre-ring::before {
+/* Posicionamiento */
+  position: absolute;
+
+  /* Bordes */
+  border-radius: 50%;
+  border: 1px dashed rgba(201,162,39,.08);
+
+  /* Otras propiedades */
+  content: '';
+  inset: 18px;}
+
+.pre-ring::after {
+/* Posicionamiento */
+  position: absolute;
+  top: -3px;
+  left: 50%;
+
+  /* Dimensiones */
+  width: 6px;
+  height: 6px;
+
+  /* Bordes */
+  border-radius: 50%;
+
+  /* Fondos */
+  background: var(--gold);
+
+  /* Colores y efectos */
+  box-shadow: 0 0 16px var(--gold);
+
+  /* Otras propiedades */
+  content: '';
+  transform: translateX(-50%);}
+
+.pre-logo {
+/* Posicionamiento */
+  position: relative;
+  z-index: 1;
+
+  /* Modelo de caja */
+  display: flex;
+  overflow: hidden;
+
+  /* Flexbox y Grid */
+  align-items: center;
+  justify-content: center;
+
+  /* Dimensiones */
+  width: 130px;
+  height: 130px;
+
+  /* Márgenes */
+  margin-bottom: 24px;
+
+  /* Bordes */
+  border-radius: 50%;
+  border: 2px solid rgba(201,162,39,.55);
+
+  /* Fondos */
+  background: linear-gradient(145deg,rgba(15,35,24,.95),rgba(8,12,9,.95));
+
+  /* Colores y efectos */
+  box-shadow: var(--glow-gold),inset 0 0 30px rgba(0,0,0,.5);
+
+  /* Transiciones y animaciones */
+  animation: preFloat 2.2s ease-in-out infinite;}
+
+.pre-logo img {
+/* Dimensiones */
+  width: 90px;
+  height: 90px;
+
+  /* Bordes */
+  border-radius: 50%;
+
+  /* Otras propiedades */
+  object-fit: contain;}
+
+.pre-title {
+/* Posicionamiento */
+  position: relative;
+  z-index: 1;
+
+  /* Márgenes */
+  margin-left: .20em;
+
+  /* Tipografía */
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem,12vw,6rem);
+  line-height: 1;
+
+  /* Colores y efectos */
+  color: var(--gold);
+  text-shadow: 0 0 60px rgba(201,162,39,.3);
+
+  /* Otras propiedades */
+  letter-spacing: .20em;}
+
+.pre-sub {
+/* Posicionamiento */
+  position: relative;
+  z-index: 1;
+
+  /* Márgenes */
+  margin-top: 6px;
+  margin-bottom: 28px;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  text-transform: uppercase;
+
+  /* Colores y efectos */
+  color: var(--cream);
+  opacity: .55;
+
+  /* Otras propiedades */
+  letter-spacing: .5em;}
+
+.pre-bar-wrap {
+/* Posicionamiento */
+  position: relative;
+  z-index: 1;
+
+  /* Dimensiones */
+  width: min(320px,80vw);}
+
+.pre-bar {
+/* Modelo de caja */
+  overflow: hidden;
+
+  /* Dimensiones */
+  width: 100%;
+  height: 2px;
+
+  /* Bordes */
+  border-radius: 2px;
+
+  /* Fondos */
+  background: rgba(255,255,255,.07);}
+
+.pre-fill {
+/* Dimensiones */
+  height: 100%;
+  width: 0%;
+
+  /* Bordes */
+  border-radius: 2px;
+
+  /* Fondos */
+  background: linear-gradient(90deg,var(--green2),var(--gold),var(--gold2));
+
+  /* Colores y efectos */
+  box-shadow: 0 0 12px rgba(201,162,39,.6);
+
+  /* Transiciones y animaciones */
+  transition: width .15s ease;}
+
+.pre-pct {
+/* Posicionamiento */
+  position: relative;
+  z-index: 1;
+
+  /* Márgenes */
+  margin-top: 10px;
+
+  /* Tipografía */
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+
+  /* Colores y efectos */
+  color: rgba(245,240,232,.4);
+
+  /* Otras propiedades */
+  letter-spacing: .1em;}

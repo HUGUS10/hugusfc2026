@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrarse | HUGUS FC</title>
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="icon" href="/imag/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="auth-page">
+    <div class="auth-box">
+      <div class="auth-logo"><img src="/imag/logo.png" alt="HUGUS FC" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:2.2rem;color:#C9A227\'>H</span>'"></div>
+      <div class="auth-title">CREAR CUENTA</div>
+      <div class="auth-sub">&Uacute;nete a la familia HUGUS FC</div>
+      <form id="registerForm">
+        <div class="form-group"><label class="form-label">Nombre completo</label><input class="form-input" type="text" id="regName" placeholder="Tu nombre" required></div>
+        <div class="form-group"><label class="form-label">Correo electr&oacute;nico</label><input class="form-input" type="email" id="regEmail" placeholder="tu@correo.com" required><div class="form-error" id="regEmailError"></div></div>
+        <div class="form-group"><label class="form-label">Contrase&ntilde;a</label><input class="form-input" type="password" id="regPass" placeholder="M&iacute;nimo 6 caracteres" required minlength="6"></div>
+        <div class="form-group"><label class="form-label">Confirmar contrase&ntilde;a</label><input class="form-input" type="password" id="regPassConfirm" placeholder="Repite tu contrase&ntilde;a" required><div class="form-error" id="regPassError"></div></div>
+        <button type="submit" class="btn-p" id="regBtn" style="width:100%">Crear Cuenta</button>
+        <div class="form-link"><a href="login.html">Ya tienes cuenta? Inicia sesi&oacute;n</a></div>
+        <div class="auth-divider"><span>o</span></div>
+        <div class="form-link"><a href="index.html"><i class="fas fa-arrow-left"></i> Volver al inicio</a></div>
+      </form>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

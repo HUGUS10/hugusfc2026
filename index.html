@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>HUGUS FC | Web Oficial</title>
+  <meta name="description" content="Web oficial del club de fútbol HUGUS FC. Dios · Familia · Fútbol.">
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="icon" type="image/png" sizes="32x32" href="/imag/logo.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="loading">
+
+  <div id="preloader">
+    <div class="pre-ring"></div>
+    <div class="pre-logo"><img src="/imag/logo.png" alt="HUGUS FC" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue;font-size:3.2rem;color:#C9A227\'>H</span>'"></div>
+    <div class="pre-title">HUGUS FC</div>
+    <div class="pre-sub">Dios &middot; Familia &middot; F&uacute;tbol</div>
+    <div class="pre-bar-wrap"><div class="pre-bar"><div class="pre-fill" id="preFill"></div></div><div class="pre-pct" id="prePct">0%</div></div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeAuth()"><i class="fas fa-times"></i></button>
+      <div style="text-align:center;margin-bottom:20px"><div class="logo-container" style="width:60px;height:60px;margin:0 auto"><img src="/imag/logo.png" alt="HUGUS" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1.8rem;color:#C9A227\'>H</span>'"></div></div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('login')">Iniciar Sesi&oacute;n</button>
+        <button class="auth-tab" onclick="switchAuthTab('register')">Registrarse</button>
+      </div>
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group"><label class="form-label">Correo</label><input class="form-input" type="email" id="loginEmail" placeholder="tu@correo.com" required><div class="form-error" id="loginEmailError"></div></div>
+        <div class="form-group"><label class="form-label">Contrase&ntilde;a</label><input class="form-input" type="password" id="loginPass" placeholder="M&iacute;nimo 6 caracteres" required minlength="6"><div class="form-error" id="loginPassError"></div></div>
+        <button type="submit" class="btn-p" id="loginBtn" style="width:100%">Acceder</button>
+        <div class="form-switch">No tienes cuenta? <a onclick="switchAuthTab('register')">Reg&iacute;strate</a></div>
+      </form>
+      <form id="registerForm" style="display:none" onsubmit="handleRegister(event)">
+        <div class="form-group"><label class="form-label">Nombre</label><input class="form-input" type="text" id="regName" placeholder="Tu nombre" required></div>
+        <div class="form-group"><label class="form-label">Correo</label><input class="form-input" type="email" id="regEmail" placeholder="tu@correo.com" required><div class="form-error" id="regEmailError"></div></div>
+        <div class="form-group"><label class="form-label">Contrase&ntilde;a</label><input class="form-input" type="password" id="regPass" placeholder="M&iacute;nimo 6 caracteres" required minlength="6"></div>
+        <div class="form-group"><label class="form-label">Confirmar</label><input class="form-input" type="password" id="regPassConfirm" placeholder="Repite contrase&ntilde;a" required><div class="form-error" id="regPassError"></div></div>
+        <button type="submit" class="btn-p" id="regBtn" style="width:100%">Crear Cuenta</button>
+        <div class="form-switch">Ya tienes cuenta? <a onclick="switchAuthTab('login')">Inicia sesi&oacute;n</a></div>
+      </form>
+    </div>
+  </div>
+
+  <nav class="top" id="mainNav">
+    <div class="nav-i">
+      <a href="#hero" class="nav-brand">
+        <div class="nav-brand-logo"><img src="/imag/logo.png" alt="H" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1.1rem;color:#C9A227\'>H</span>'"></div>
+        <div class="nav-brand-text">HUGUS FC</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#plantilla">Plantilla</a></li>
+        <li><a href="#calendario">Calendario</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+        <li><a href="#tabla">Tabla</a></li>
+        <li><a href="#galeria">Galer&iacute;a</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="btn-nav-acceder" id="btnAcceder" onclick="openAuth()"><i class="fas fa-user"></i> Acceder</button>
+        <div class="user-menu-container" id="userMenuContainer">
+          <button class="user-avatar-btn" id="userAvatarBtn" onclick="toggleUserDropdown()">U</button>
+          <div class="user-dropdown" id="userDropdown">
+            <button class="user-dropdown-item" onclick="window.location.href='perfil.html'"><i class="fas fa-user-circle"></i> Mi Perfil</button>
+            <button class="user-dropdown-item admin-link" id="adminLink" onclick="showAdmin()"><i class="fas fa-shield-halved"></i> Panel Admin</button>
+            <div class="user-dropdown-divider"></div>
+            <button class="user-dropdown-item logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesi&oacute;n</button>
+          </div>
+        </div>
+        <button class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mob-menu" id="mobMenu">
+    <ul>
+      <li><a href="#hero" onclick="closeMobile()">Inicio</a></li>
+      <li><a href="#nosotros" onclick="closeMobile()">Nosotros</a></li>
+      <li><a href="#plantilla" onclick="closeMobile()">Plantilla</a></li>
+      <li><a href="#calendario" onclick="closeMobile()">Calendario</a></li>
+      <li><a href="#noticias" onclick="closeMobile()">Noticias</a></li>
+      <li><a href="#tabla" onclick="closeMobile()">Tabla</a></li>
+      <li><a href="#galeria" onclick="closeMobile()">Galer&iacute;a</a></li>
+      <li><a href="tienda.html" onclick="closeMobile()">Tienda</a></li>
+      <li><a href="contacto.html" onclick="closeMobile()">Contacto</a></li>
+    </ul>
+    <button class="mob-acceder" id="mobAcceder" onclick="openAuth();closeMobile()">Acceder</button>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="hero-atmo"></div>
+    <div class="hero-spot"></div>
+    <div class="hero-content">
+      <div class="hero-shield-wrap">
+        <div class="hero-shield-ring"></div>
+        <div class="hero-escudo"><img src="/imag/bandera_oficial.png" alt="Escudo HUGUS FC" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:Bebas Neue;font-size:clamp(4rem,12vw,7rem);color:#C9A227\'>H</span>'"></div>
+      </div>
+      <div class="hero-eyebrow">Club Deportivo</div>
+      <h1 class="hero-title">HUGUS <span class="g">FC</span></h1>
+      <p class="hero-sub">Dios &middot; Familia &middot; F&uacute;tbol</p>
+      <div class="hero-rule"></div>
+      <p class="hero-lema">Lema Oficial</p>
+      <p class="hero-motto">FE, DISCIPLINA Y CORAZ&Oacute;N</p>
+      <div class="hero-btns">
+        <a href="#calendario" class="btn-p"><i class="fas fa-calendar-alt"></i>&nbsp; Pr&oacute;ximo Partido</a>
+        <a href="#nosotros" class="btn-o"><i class="fas fa-info-circle"></i>&nbsp; Con&oacute;cenos</a>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll<span></span></div>
+  </section>
+
+  <div class="statsbar">
+    <div class="statsbar-inner">
+      <div class="st"><div class="st-n" data-count="47">0</div><div class="st-l">Partidos Jugados</div></div>
+      <div class="st"><div class="st-n" data-count="32">0</div><div class="st-l">Victorias</div></div>
+      <div class="st"><div class="st-n" data-count="98">0</div><div class="st-l">Goles Anotados</div></div>
+      <div class="st"><div class="st-n" data-count="28">0</div><div class="st-l">Jugadores</div></div>
+    </div>
+  </div>
+
+  <section class="quick-sec">
+    <div class="si">
+      <div class="stag">Accesos R&aacute;pidos</div>
+      <h2 class="stit">EXPLORA <span class="g">HUGUS FC</span></h2>
+      <div class="quick-grid">
+        <a href="#calendario" class="quick-card reveal"><div class="quick-ico"><i class="fas fa-futbol"></i></div><div class="quick-title">Pr&oacute;ximo Partido</div><div class="quick-txt">Fecha, hora y lugar de nuestro pr&oacute;ximo encuentro oficial.</div></a>
+        <a href="#plantilla" class="quick-card reveal reveal-delay-1"><div class="quick-ico"><i class="fas fa-users"></i></div><div class="quick-title">Plantilla 2025</div><div class="quick-txt">Los 28 guerreros que defienden los colores del HUGUS FC.</div></a>
+        <a href="#tabla" class="quick-card reveal reveal-delay-2"><div class="quick-ico"><i class="fas fa-trophy"></i></div><div class="quick-title">Tabla de Posiciones</div><div class="quick-txt">Posici&oacute;n actual en la liga y rendimiento general.</div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-sec" id="nosotros">
+    <div class="si">
+      <div class="stag">Sobre Nosotros</div>
+      <h2 class="stit">M&Aacute;S QUE UN <span class="g">CLUB</span></h2>
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <p class="about-p">HUGUS FC naci&oacute; de la pasi&oacute;n por el f&uacute;tbol y la convicci&oacute;n de que el deporte puede transformar vidas. Fundado por un grupo de amigos unidos por la fe y la familia.</p>
+          <p class="about-p">Cada partido que jugamos es una oportunidad de demostrar que con fe todo se puede. Nuestros jugadores no solo entrenan el cuerpo, sino tambi&eacute;n el car&aacute;cter.</p>
+          <p class="about-p">Desde categor&iacute;as infantiles hasta el primer equipo, HUGUS FC es una familia que crece junta.</p>
+        </div>
+        <div class="facts reveal reveal-delay-1">
+          <div class="fact"><span class="fl">Fundado</span><span class="fv g">2019</span></div>
+          <div class="fact"><span class="fl">Ciudad</span><span class="fv">Hermosillo, Sonora</span></div>
+          <div class="fact"><span class="fl">Colores</span><span class="fv">Verde Oscuro / Dorado</span></div>
+          <div class="fact"><span class="fl">Estadio</span><span class="fv">Campo HUGUS</span></div>
+          <div class="fact"><span class="fl">Liga</span><span class="fv g">Liga Local 2025</span></div>
+          <div class="fact"><span class="fl">Temporadas</span><span class="fv">6ta Temporada</span></div>
+          <div class="fact"><span class="fl">T&iacute;tulos</span><span class="fv g">2 Campeonatos</span></div>
+          <div class="fact"><span class="fl">Presidente</span><span class="fv">Direcci&oacute;n HUGUS</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="valores-sec">
+    <div class="si">
+      <div class="stag">Nuestros Valores</div>
+      <h2 class="stit">LO QUE NOS <span class="g">DEFINE</span></h2>
+      <div class="valores-grid">
+        <div class="vcard reveal"><div class="v-icon"><i class="fas fa-cross"></i></div><div class="v-title">Fe</div><div class="v-txt">Dios es el centro de todo lo que hacemos. Cada partido comienza con oraci&oacute;n.</div></div>
+        <div class="vcard reveal reveal-delay-1"><div class="v-icon"><i class="fas fa-home"></i></div><div class="v-title">Familia</div><div class="v-txt">Somos una familia antes que un equipo. Cada miembro es fundamental.</div></div>
+        <div class="vcard reveal reveal-delay-2"><div class="v-icon"><i class="fas fa-futbol"></i></div><div class="v-title">F&uacute;tbol</div><div class="v-txt">Jugamos con pasi&oacute;n, intensidad y respeto. Nuestro lenguaje universal.</div></div>
+        <div class="vcard reveal"><div class="v-icon"><i class="fas fa-dumbbell"></i></div><div class="v-title">Disciplina</div><div class="v-txt">Entrenamientos, dieta, puntualidad. La disciplina en cada detalle.</div></div>
+        <div class="vcard reveal reveal-delay-1"><div class="v-icon"><i class="fas fa-handshake"></i></div><div class="v-title">Respeto</div><div class="v-txt">Respetamos al rival, al &aacute;rbitro y al compa&ntilde;ero. Siempre.</div></div>
+        <div class="vcard reveal reveal-delay-2"><div class="v-icon"><i class="fas fa-heart"></i></div><div class="v-title">Coraz&oacute;n</div><div class="v-txt">Nunca nos rendimos. El coraz&oacute;n es nuestra mayor fortaleza.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plantilla-sec" id="plantilla">
+    <div class="si">
+      <div class="stag">Plantilla</div>
+      <h2 class="stit">GUERREROS <span class="g">2025</span></h2>
+      <p class="sdesc">Los jugadores que defienden la camiseta del HUGUS FC.</p>
+      <div class="plantilla-grid" id="plantillaGrid"><div class="loading-state"><div class="loading-spinner"></div>Cargando plantilla...</div></div>
+    </div>
+  </section>
+
+  <section class="kit-sec">
+    <div class="si">
+      <div class="stag">Uniforme Oficial</div>
+      <h2 class="stit">KIT <span class="g">HUGUS FC</span></h2>
+      <div class="kit-feature">
+        <div class="kit-img-wrap reveal">
+          <div class="kit-badge">Temporada 2025</div>
+          <img src="/imag/camiseta.png" alt="Kit Oficial" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-tshirt\' style=\'font-size:8rem;color:rgba(201,162,39,.15)\'></i>'">
+        </div>
+        <div class="kit-details reveal reveal-delay-1">
+          <h3 class="kit-h">UNIFORME <span class="g">TITULAR</span></h3>
+          <p class="kit-desc">Verde oscuro profundo con detalles dorados que representan la excelencia y el legado de HUGUS FC.</p>
+          <div class="kit-colors">
+            <div class="swatch" style="background:#163327" title="Verde Oscuro"></div>
+            <div class="swatch" style="background:#C9A227" title="Dorado"></div>
+            <div class="swatch" style="background:#0A0F0A" title="Negro"></div>
+            <div class="swatch" style="background:#F5F0E8" title="Crema"></div>
+          </div>
+          <div class="kit-tags"><span class="ktag">Poli&eacute;ster Premium</span><span class="ktag">Secado R&aacute;pido</span><span class="ktag">Breathable</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="galeria-sec" id="galeria">
+    <div class="si">
+      <div class="stag">Galer&iacute;a</div>
+      <h2 class="stit">MOMENTOS <span class="g">INOLVIDABLES</span></h2>
+      <div class="gallery-grid" id="galleryGrid"><div class="loading-state"><div class="loading-spinner"></div>Cargando...</div></div>
+    </div>
+  </section>
+
+  <section class="tabla-sec" id="tabla">
+    <div class="si">
+      <div class="stag">Liga 2025</div>
+      <h2 class="stit">TABLA DE <span class="g">POSICIONES</span></h2>
+      <div class="tabla-wrap reveal">
+        <table class="tabla-table"><thead><tr><th>Pos</th><th>Equipo</th><th>JJ</th><th>JG</th><th>JE</th><th>JP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th><th>Forma</th></tr></thead>
+        <tbody id="tablaBody"><tr><td colspan="11" class="loading-state"><div class="loading-spinner"></div>Cargando tabla...</td></tr></tbody></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="noticias-sec" id="noticias">
+    <div class="si">
+      <div class="stag">&Uacute;ltimas Noticias</div>
+      <h2 class="stit">ACTUALIDAD <span class="g">HUGUS FC</span></h2>
+      <div class="noticias-grid" id="noticiasGrid"><div class="noticias-empty"><div class="loading-spinner"></div><br>Cargando noticias...</div></div>
+    </div>
+  </section>
+
+  <section class="cal-sec" id="calendario">
+    <div class="si">
+      <div class="stag">Calendario</div>
+      <h2 class="stit">PR&Oacute;XIMO <span class="g">PARTIDO</span></h2>
+      <div class="calendar-head">
+        <span class="next-label">Pr&oacute;ximo encuentro en:</span>
+        <div class="countdown" id="countdown">
+          <div class="cd-unit"><div class="cd-num" id="cdDays">00</div><div class="cd-label">D&iacute;as</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="cd-num" id="cdHours">00</div><div class="cd-label">Horas</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="cd-num" id="cdMins">00</div><div class="cd-label">Min</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="cd-num" id="cdSecs">00</div><div class="cd-label">Seg</div></div>
+        </div>
+      </div>
+      <div class="calendar-grid">
+        <div class="match-card reveal" id="mainMatchCard"><div class="loading-state"><div class="loading-spinner"></div>Cargando...</div></div>
+        <div class="calendar-side reveal reveal-delay-1">
+          <div class="cal-side-title">Pr&oacute;ximos Juegos</div>
+          <div class="next-matches" id="nextMatches"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="resultados-sec" id="resultados">
+    <div class="si">
+      <div class="stag">Resultados</div>
+      <h2 class="stit">&Uacute;LTIMOS <span class="g">RESULTADOS</span></h2>
+      <div class="resultados-grid" id="resultadosGrid"><div style="grid-column:1/-1" class="loading-state"><div class="loading-spinner"></div>Cargando resultados...</div></div>
+    </div>
+  </section>
+
+  <section class="comunidad-sec">
+    <div class="si">
+      <div class="stag">Comunidad</div>
+      <h2 class="stit">FAMILIA <span class="g">HUGUS</span></h2>
+      <div class="com-grid">
+        <div class="com-card reveal"><div class="com-ico"><i class="fas fa-users"></i></div><div class="com-title">Miembros Activos</div><div class="com-txt">Jugadores, directivos y familias.</div><div class="com-count">150+</div></div>
+        <div class="com-card reveal reveal-delay-1"><div class="com-ico"><i class="fas fa-child"></i></div><div class="com-title">Categor&iacute;as Infantiles</div><div class="com-txt">Formando futuras generaciones.</div><div class="com-count">3</div></div>
+        <div class="com-card reveal reveal-delay-2"><div class="com-ico"><i class="fas fa-calendar-check"></i></div><div class="com-title">Eventos al A&ntilde;o</div><div class="com-txt">Torneos, convivencias y m&aacute;s.</div><div class="com-count">24+</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN SECTION -->
+  <section class="admin-sec" id="adminSection">
+    <div class="si">
+      <div class="stag">Administraci&oacute;n</div>
+      <h2 class="stit">PANEL DE <span class="g">CONTROL</span></h2>
+      <div class="admin-grid">
+        <div class="admin-sidebar">
+          <div class="admin-nav-item active" onclick="switchAdminPanel('dashboard',this)"><i class="fas fa-chart-line"></i> Dashboard</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-noticias',this)"><i class="fas fa-newspaper"></i> Noticias</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-partidos',this)"><i class="fas fa-futbol"></i> Partidos</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-plantilla',this)"><i class="fas fa-users"></i> Plantilla</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-tabla',this)"><i class="fas fa-trophy"></i> Tabla</div>
+        </div>
+        <div class="admin-content">
+          <div class="admin-panel active" id="panel-dashboard"><div class="admin-panel-title">Dashboard</div><div class="admin-stats"><div class="admin-stat-card"><div class="admin-stat-num" id="dashNoticias">-</div><div class="admin-stat-label">Noticias</div></div><div class="admin-stat-card"><div class="admin-stat-num" id="dashPartidos">-</div><div class="admin-stat-label">Partidos</div></div><div class="admin-stat-card"><div class="admin-stat-num" id="dashJugadores">-</div><div class="admin-stat-label">Jugadores</div></div><div class="admin-stat-card"><div class="admin-stat-num" id="dashEquipos">-</div><div class="admin-stat-label">Equipos</div></div></div></div>
+          <div class="admin-panel" id="panel-admin-noticias"><div class="admin-panel-title">Noticias</div><button class="admin-btn admin-btn-add" onclick="toggleAdminForm('noticiaForm')"><i class="fas fa-plus"></i> Nueva</button><div class="admin-form" id="noticiaForm"><div class="admin-form-row full"><div class="form-group"><label class="form-label">T&iacute;tulo</label><input class="form-input" id="nf-titulo"></div></div><div class="admin-form-row"><div class="form-group"><label class="form-label">Categor&iacute;a</label><input class="form-input" id="nf-cat"></div><div class="form-group"><label class="form-label">Fecha</label><input class="form-input" type="date" id="nf-fecha"></div></div><div class="admin-form-row full"><div class="form-group"><label class="form-label">Resumen</label><textarea class="form-input" id="nf-resumen" rows="3"></textarea></div></div><div style="display:flex;gap:10px"><button class="admin-btn admin-btn-add" onclick="saveNoticia()"><i class="fas fa-save"></i> Guardar</button><button class="admin-btn admin-btn-del" onclick="toggleAdminForm('noticiaForm')">Cancelar</button></div></div><table class="admin-table"><thead><tr><th>T&iacute;tulo</th><th>Cat.</th><th>Fecha</th><th></th></tr></thead><tbody id="adminNoticiasBody"></tbody></table></div>
+          <div class="admin-panel" id="panel-admin-partidos"><div class="admin-panel-title">Partidos</div><button class="admin-btn admin-btn-add" onclick="toggleAdminForm('partidoForm')"><i class="fas fa-plus"></i> Nuevo</button><div class="admin-form" id="partidoForm"><div class="admin-form-row"><div class="form-group"><label class="form-label">Rival</label><input class="form-input" id="pf-rival"></div><div class="form-group"><label class="form-label">Fecha</label><input class="form-input" type="datetime-local" id="pf-fecha"></div></div><div class="admin-form-row"><div class="form-group"><label class="form-label">Lugar</label><input class="form-input" id="pf-lugar"></div><div class="form-group"><label class="form-label">Competencia</label><input class="form-input" id="pf-comp"></div></div><div style="display:flex;gap:10px"><button class="admin-btn admin-btn-add" onclick="savePartido()"><i class="fas fa-save"></i> Guardar</button><button class="admin-btn admin-btn-del" onclick="toggleAdminForm('partidoForm')">Cancelar</button></div></div><table class="admin-table"><thead><tr><th>Rival</th><th>Fecha</th><th>Lugar</th><th>Resultado</th><th></th></tr></thead><tbody id="adminPartidosBody"></tbody></table></div>
+          <div class="admin-panel" id="panel-admin-plantilla"><div class="admin-panel-title">Plantilla</div><button class="admin-btn admin-btn-add" onclick="toggleAdminForm('jugadorForm')"><i class="fas fa-plus"></i> Nuevo</button><div class="admin-form" id="jugadorForm"><div class="admin-form-row"><div class="form-group"><label class="form-label">Nombre</label><input class="form-input" id="jf-nombre"></div><div class="form-group"><label class="form-label">Posici&oacute;n</label><input class="form-input" id="jf-pos"></div></div><div class="admin-form-row"><div class="form-group"><label class="form-label">N&uacute;mero</label><input class="form-input" type="number" id="jf-num"></div><div class="form-group"><label class="form-label">Detalle</label><input class="form-input" id="jf-detalle"></div></div><div style="display:flex;gap:10px"><button class="admin-btn admin-btn-add" onclick="saveJugador()"><i class="fas fa-save"></i> Guardar</button><button class="admin-btn admin-btn-del" onclick="toggleAdminForm('jugadorForm')">Cancelar</button></div></div><table class="admin-table"><thead><tr><th>#</th><th>Nombre</th><th>Pos.</th><th></th></tr></thead><tbody id="adminPlantillaBody"></tbody></table></div>
+          <div class="admin-panel" id="panel-admin-tabla"><div class="admin-panel-title">Tabla</div><button class="admin-btn admin-btn-add" onclick="toggleAdminForm('tablaForm')"><i class="fas fa-plus"></i> Nuevo</button><div class="admin-form" id="tablaForm"><div class="admin-form-row"><div class="form-group"><label class="form-label">Nombre</label><input class="form-input" id="tf-nombre"></div><div class="form-group"><label class="form-label">Inicial</label><input class="form-input" id="tf-inicial" maxlength="2"></div></div><div class="admin-form-row"><div class="form-group"><label class="form-label">JG</label><input class="form-input" type="number" id="tf-jg" value="0"></div><div class="form-group"><label class="form-label">JE</label><input class="form-input" type="number" id="tf-je" value="0"></div><div class="form-group"><label class="form-label">JP</label><input class="form-input" type="number" id="tf-jp" value="0"></div><div class="form-group"><label class="form-label">GF</label><input class="form-input" type="number" id="tf-gf" value="0"></div><div class="form-group"><label class="form-label">GC</label><input class="form-input" type="number" id="tf-gc" value="0"></div></div><div style="display:flex;gap:10px"><button class="admin-btn admin-btn-add" onclick="saveEquipo()"><i class="fas fa-save"></i> Guardar</button><button class="admin-btn admin-btn-del" onclick="toggleAdminForm('tablaForm')">Cancelar</button></div></div><table class="admin-table"><thead><tr><th>Equipo</th><th>JJ</th><th>JG</th><th>JE</th><th>JP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th><th></th></tr></thead><tbody id="adminTablaBody"></tbody></table></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-row"><div class="footer-logo"><img src="/imag/logo.png" alt="HUGUS" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1rem;color:#C9A227\'>H</span>'"></div><div class="footer-brand">HUGUS FC</div></div>
+          <p class="footer-desc">Club de f&uacute;tbol fundado en 2019. Dios, Familia y F&uacute;tbol son los pilares que nos mantienen unidos.</p>
+          <div class="footer-socials"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
+        </div>
+        <div class="footer-col"><div class="footer-col-title">Navegaci&oacute;n</div><a href="#hero">Inicio</a><a href="#nosotros">Nosotros</a><a href="#plantilla">Plantilla</a><a href="#calendario">Calendario</a><a href="#noticias">Noticias</a></div>
+        <div class="footer-col"><div class="footer-col-title">Club</div><a href="#tabla">Tabla de Posiciones</a><a href="#resultados">Resultados</a><a href="#galeria">Galer&iacute;a</a><a href="tienda.html">Tienda</a><a href="contacto.html">Contacto</a></div>
+        <div class="footer-col"><div class="footer-col-title">Legal</div><a href="#">Aviso de Privacidad</a><a href="#">T&eacute;rminos de Uso</a><a href="#">Pol&iacute;ticas</a></div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2025 <span>HUGUS FC</span>. Todos los derechos reservados.</div>
+        <div class="footer-copy">Dios &middot; Familia &middot; F&uacute;tbol</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/noticias.js"></script>
+  <script src="js/partidos.js"></script>
+  <script src="js/tienda.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // Carga específica de index.html
+    initPreloader(async () => {
+      checkAuth();
+      try {
+        await Promise.all([
+          (async () => {
+            const j = await api('/api/jugadores');
+            document.getElementById('plantillaGrid').innerHTML = j.map(p => `<div class="player-card reveal"><div class="player-num-area"><div class="player-num">${p.numero}</div><div class="player-pos-badge">${p.posicion}</div></div><div class="player-body"><div class="player-name">${p.nombre}</div><div class="player-detail">${p.detalle||''}</div></div></div>`).join('');
+            observeReveals();
+          })(),
+          (async () => {
+            const g = await api('/api/galeria');
+            document.getElementById('galleryGrid').innerHTML = g.map((x,i) => `<div class="g-cell ${i===0?'g-cell-big':''}" onclick="openLightbox('${x.imagen||'/imag/logo.png'}')"><img src="${x.imagen||'/imag/logo.png'}" alt="${x.titulo}" loading="lazy" onerror="this.src='https://picsum.photos/seed/hugus${i}/800/600.jpg'"><div class="g-overlay"><span class="g-label">${x.titulo}</span></div></div>`).join('');
+          })(),
+          (async () => {
+            const t = await api('/api/tabla');
+            const getF = n => { let h=0; for(let i=0;i<n.length;i++)h=((h<<5)-h)+n.charCodeAt(i); return ['W','W','D','L','W'].map((f,i)=>['W','W','D','L','W'][Math.abs((h+i*7)%5)]); };
+            document.getElementById('tablaBody').innerHTML = t.map((x,i) => { const pos=i+1; const f=getF(x.nombre); return `<tr><td><div class="tabla-equipo"><span class="tabla-pos ${pos===1?'primero':''}">${pos}</span><div class="tabla-escudito">${x.inicial}</div><span class="tabla-nombre">${x.nombre}</span></div></td><td>${x.jj}</td><td>${x.jg}</td><td>${x.je}</td><td>${x.jp}</td><td>${x.gf}</td><td>${x.gc}</td><td>${x.dg>0?'+':''}${x.dg}</td><td><span class="tabla-pts">${x.pts}</span></td><td>${f.map(v=>v==='W'?'<span class="badge-w">W</span>':v==='D'?'<span class="badge-d">D</span>':'<span class="badge-l">L</span>').join('')}</td></tr>`; }).join('');
+          })(),
+          loadNoticias(),
+          loadPartidos()
+        ]);
+      } catch(e) { console.error(e); }
+    });
+
+    function openLightbox(src) { document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow=''; }
+    document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+  </script>
+</body>
+</html>

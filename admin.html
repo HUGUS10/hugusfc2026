@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin | HUGUS FC</title>
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="icon" href="/imag/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+  <nav class="solid" id="mainNav"><div class="nav-i"><a href="index.html" class="nav-brand"><div class="nav-brand-logo"><img src="/imag/logo.png" alt="H" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1.1rem;color:#C9A227\'>H</span>'"></div><div class="nav-brand-text">HUGUS FC</div></a><div class="nav-right"><a href="index.html" class="btn-nav-acceder"><i class="fas fa-arrow-left"></i> Inicio</a></div></div></nav>
+  <div class="page-wrap">
+    <div class="page-hero"><div class="breadcrumb"><a href="index.html">Inicio</a> / Admin</div><h2 class="stit">PANEL DE <span class="g">CONTROL</span></h2></div>
+    <div class="si">
+      <div class="admin-grid">
+        <div class="admin-sidebar">
+          <div class="admin-nav-item active" onclick="switchAdminPanel('dashboard',this)"><i class="fas fa-chart-line"></i> Dashboard</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-noticias',this)"><i class="fas fa-newspaper"></i> Noticias</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-partidos',this)"><i class="fas fa-futbol"></i> Partidos</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-plantilla',this)"><i class="fas fa-users"></i> Plantilla</div>
+          <div class="admin-nav-item" onclick="switchAdminPanel('admin-tabla',this)"><i class="fas fa-trophy"></i> Tabla</div>
+        </div>
+        <div class="admin-content">
+          <div class="admin-panel active" id="panel-dashboard"><div class="admin-panel-title">Dashboard</div><div class="admin-stats"><div class="admin-stat-card"><div class="admin-stat-num" id="dashNoticias">-</div><div class="admin-stat-label">Noticias</div></div><div class="admin-stat-card"><div class="admin-stat-num" id="dashPartidos">-</div><div class="admin-stat-label">Partidos</div></div><div class="admin-stat-card"><div class="admin-stat-num" id="dashJugadores">-</div><div class="admin-stat-label">Jugadores</div></div><div class="admin-stat-card"><div class="admin-stat-num" id="dashEquipos">-</div><div class="admin-stat-label">Equipos</div></div></div></div>
+
+          <div class="admin-panel" id="panel-admin-noticias"><div class="admin-panel-title">Noticias</div><button class="admin-btn admin-btn-add" onclick="toggleAdminForm('noticiaForm')"><i class="fas fa-plus"></i> Nueva</button><div class="admin-form" id="noticiaForm"><div class="admin-form-row full"><div class="form-group"><label class="form-label">T&iacute;tulo</label><input class="form-input" id="nf-titulo"></div></div><div class="admin-form-row"><div class="form-group"><label class="form-label">Categor&iacute;a</label><input class="form-input" id="nf-cat"></div><div class="form-group"><label class="form-label">Fecha</label><input class="form-input" type="date" id="nf-fecha"></div></div><div class="admin-form-row full"><div class="form-group"><label class="form-label">Resumen</label><textarea class="form-input" id="nf-resumen" rows="3"></textarea></div></div><div style="display:flex;gap:10px"><button class="admin-btn admin-btn-add" onclick="saveNoticia()"><i class="fas fa-save"></i> Guardar</button><button class="admin-btn admin-btn-del" onclick="toggleAdminForm('noticiaForm')">Cancelar</button></div></div><table class="admin-table"><thead><tr><th>T&iacute;tulo</th><th>Cat.</th><th>Fecha</th><th></th></tr></thead><tbody id="adminNoticiasBody"></tbody></table></div>
+
+          <div class="admin-panel" id="panel-admin-partidos"><div class="admin-panel-title">Partidos</div><button class="admin-btn admin-btn-add" onclick="toggleAdminForm('partidoForm')"><i class="fas fa-plus"></i> Nuevo</button><div class="admin-form" id="partidoForm"><div class="admin-form-row"><div class="form-group"><label class="form-label">Rival</label><input class="form-input" id="pf-rival"></div><div class="form-group"><label class="form-label">Fecha</label><input class="form-input" type="datetime-local" id="pf-fecha"></div></div><div class="admin-form-row"><div class="form-group"><label class="form-label">Lugar</label><input class="form-input" id="pf-lugar"></div><div class="form-group"><label class="form-label">Competencia</label><input class="form-input" id="pf-comp"></div></div><div style="display:flex;gap:10px"><button class="admin-btn admin-btn-add" onclick="savePartido()"><i class="fas fa-save"></i> Guardar</button><button class="admin-btn admin-btn-del" onclick="toggleAdminForm('partidoForm')">Cancelar</button></div></div><table class="admin-table"><thead><tr><th>Rival</th><th>Fecha</th><th>Lugar</th><th>Resultado</th><th></th></tr></thead><tbody id="adminPartidosBody"></tbody></table></div>
+
+          <div class="admin-panel" id="panel-admin-plantilla">
+            <div class="admin-panel-title">Plantilla</div>
+            <button class="admin-btn admin-btn-add" onclick="toggleAdminForm('jugadorForm')"><i class="fas fa-plus"></i> Nuevo</button>
+            <div class="admin-form" id="jugadorForm">
+              <div class="admin-form-row full">
+                <div class="form-group">
+                  <label class="form-label">Foto del jugador</label>
+                  <div class="admin-foto-upload">
+                    <img id="jf-foto-preview" src="" alt="" style="display:none;width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin-bottom:8px;">
+                    <input class="form-input" type="file" id="jf-foto-file" accept="image/*" onchange="previewJugadorFoto(event)">
+                  </div>
+                </div>
+              </div>
+              <div class="admin-form-row">
+                <div class="form-group"><label class="form-label">Nombre</label><input class="form-input" id="jf-nombre"></div>
+                <div class="form-group"><label class="form-label">Posici&oacute;n</label><input class="form-input" id="jf-pos"></div>
+              </div>
+              <div class="admin-form-row">
+                <div class="form-group"><label class="form-label">N&uacute;mero</label><input class="form-input" type="number" id="jf-num"></div>
+                <div class="form-group"><label class="form-label">Detalle</label><input class="form-input" id="jf-detalle"></div>
+              </div>
+              <div style="display:flex;gap:10px">
+                <button class="admin-btn admin-btn-add" onclick="saveJugador()"><i class="fas fa-save"></i> Guardar</button>
+                <button class="admin-btn admin-btn-del" onclick="toggleAdminForm('jugadorForm')">Cancelar</button>
+              </div>
+            </div>
+            <table class="admin-table">
+              <thead><tr><th></th><th>#</th><th>Nombre</th><th>Pos.</th><th></th></tr></thead>
+              <tbody id="adminPlantillaBody"></tbody>
+            </table>
+          </div>
+
+          <div class="admin-panel" id="panel-admin-tabla"><div class="admin-panel-title">Tabla</div><button class="admin-btn admin-btn-add" onclick="toggleAdminForm('tablaForm')"><i class="fas fa-plus"></i> Nuevo</button><div class="admin-form" id="tablaForm"><div class="admin-form-row"><div class="form-group"><label class="form-label">Nombre</label><input class="form-input" id="tf-nombre"></div><div class="form-group"><label class="form-label">Inicial</label><input class="form-input" id="tf-inicial" maxlength="2"></div></div><div class="admin-form-row"><div class="form-group"><label class="form-label">JG</label><input class="form-input" type="number" id="tf-jg" value="0"></div><div class="form-group"><label class="form-label">JE</label><input class="form-input" type="number" id="tf-je" value="0"></div><div class="form-group"><label class="form-label">JP</label><input class="form-input" type="number" id="tf-jp" value="0"></div><div class="form-group"><label class="form-label">GF</label><input class="form-input" type="number" id="tf-gf" value="0"></div><div class="form-group"><label class="form-label">GC</label><input class="form-input" type="number" id="tf-gc" value="0"></div></div><div style="display:flex;gap:10px"><button class="admin-btn admin-btn-add" onclick="saveEquipo()"><i class="fas fa-save"></i> Guardar</button><button class="admin-btn admin-btn-del" onclick="toggleAdminForm('tablaForm')">Cancelar</button></div></div><table class="admin-table"><thead><tr><th>Equipo</th><th>JJ</th><th>JG</th><th>JE</th><th>JP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th><th></th></tr></thead><tbody id="adminTablaBody"></tbody></table></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">&copy; 2025 <span>HUGUS FC</span></div><div class="footer-copy">Dios &middot; Familia &middot; F&uacute;tbol</div></div></div></footer>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/noticias.js"></script>
+  <script src="js/partidos.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Verificar que es admin
+      try {
+        const user = await api('/api/auth/check');
+        if (!user.authenticated || user.user.rol !== 'admin') {
+          window.location.href = 'login.html';
+          return;
+        }
+        showLoggedIn(user.user);
+      } catch(e) { window.location.href = 'login.html'; return; }
+      await refreshDashboard();
+      await renderAdminNoticias();
+      await renderAdminPartidos();
+      await renderAdminPlantilla();
+      await renderAdminTabla();
+    });
+  </script>
+</body>
+</html>

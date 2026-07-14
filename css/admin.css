@@ -1,0 +1,374 @@
+.admin-sec {
+/* Modelo de caja */
+  display: none;
+
+  /* Fondos */
+  background: var(--dark);}
+
+.admin-sec.active {
+/* Modelo de caja */
+  display: block;}
+
+.admin-grid {
+/* Modelo de caja */
+  display: grid;
+
+  /* Flexbox y Grid */
+  gap: 20px;
+
+  /* Márgenes */
+  margin-top: 30px;
+
+  /* Otras propiedades */
+  grid-template-columns: 220px 1fr;}
+
+.admin-sidebar {
+/* Relleno */
+  padding: 20px 14px;
+
+  /* Bordes */
+  border: 1px solid rgba(201,162,39,.1);
+  border-radius: var(--radius-xl);
+
+  /* Fondos */
+  background: var(--dark2);}
+
+.admin-nav-item {
+/* Modelo de caja */
+  display: flex;
+
+  /* Flexbox y Grid */
+  align-items: center;
+  gap: 10px;
+
+  /* Dimensiones */
+  width: 100%;
+
+  /* Márgenes */
+  margin-bottom: 4px;
+
+  /* Relleno */
+  padding: 12px 14px;
+
+  /* Bordes */
+  border-radius: var(--radius-sm);
+  border: none;
+
+  /* Fondos */
+  background: none;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: left;
+
+  /* Colores y efectos */
+  color: var(--grey2);
+
+  /* Transiciones y animaciones */
+  transition: all .2s;
+
+  /* Interactividad */
+  cursor: pointer;
+
+  /* Otras propiedades */
+  letter-spacing: .12em;}
+
+.admin-nav-item:hover, .admin-nav-item.active {
+/* Fondos */
+  background: rgba(201,162,39,.08);
+
+  /* Colores y efectos */
+  color: var(--gold);}
+
+.admin-nav-item i {
+/* Flexbox y Grid */
+  flex-shrink: 0;
+
+  /* Dimensiones */
+  width: 18px;
+
+  /* Tipografía */
+  text-align: center;}
+
+.admin-content {
+/* Dimensiones */
+  min-height: 400px;
+
+  /* Relleno */
+  padding: 28px;
+
+  /* Bordes */
+  border: 1px solid rgba(201,162,39,.1);
+  border-radius: var(--radius-xl);
+
+  /* Fondos */
+  background: var(--dark2);}
+
+.admin-panel {
+/* Modelo de caja */
+  display: none;}
+
+.admin-panel.active {
+/* Modelo de caja */
+  display: block;}
+
+.admin-panel-title {
+/* Modelo de caja */
+  display: flex;
+
+  /* Flexbox y Grid */
+  align-items: center;
+  gap: 12px;
+
+  /* Márgenes */
+  margin-bottom: 20px;
+
+  /* Tipografía */
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+
+  /* Colores y efectos */
+  color: var(--white);}
+
+.admin-panel-title::after {
+/* Flexbox y Grid */
+  flex: 1;
+
+  /* Dimensiones */
+  height: 1px;
+
+  /* Fondos */
+  background: rgba(201,162,39,.15);
+
+  /* Otras propiedades */
+  content: '';}
+
+.admin-stats {
+/* Modelo de caja */
+  display: grid;
+
+  /* Flexbox y Grid */
+  gap: 16px;
+
+  /* Otras propiedades */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));}
+
+.admin-stat-card {
+/* Relleno */
+  padding: 20px;
+
+  /* Bordes */
+  border: 1px solid rgba(201,162,39,.1);
+  border-radius: var(--radius-md);
+
+  /* Fondos */
+  background: var(--dark3);
+
+  /* Tipografía */
+  text-align: center;}
+
+.admin-stat-num {
+/* Tipografía */
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  line-height: 1;
+
+  /* Colores y efectos */
+  color: var(--gold);}
+
+.admin-stat-label {
+/* Márgenes */
+  margin-top: 4px;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: .65rem;
+  text-transform: uppercase;
+
+  /* Colores y efectos */
+  color: var(--grey);
+
+  /* Otras propiedades */
+  letter-spacing: .18em;}
+
+.admin-table {
+/* Dimensiones */
+  width: 100%;
+
+  /* Otras propiedades */
+  border-collapse: collapse;}
+
+.admin-table th {
+/* Relleno */
+  padding: 10px 12px;
+
+  /* Fondos */
+  background: var(--dark3);
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: .6rem;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 700;
+
+  /* Colores y efectos */
+  color: var(--gold);
+
+  /* Otras propiedades */
+  letter-spacing: .2em;
+  white-space: nowrap;}
+
+.admin-table td {
+/* Relleno */
+  padding: 10px 12px;
+
+  /* Bordes */
+  border-bottom: 1px solid rgba(255,255,255,.04);
+
+  /* Tipografía */
+  font-size: .82rem;
+
+  /* Colores y efectos */
+  color: var(--cream);
+
+  /* Otras propiedades */
+  vertical-align: middle;}
+
+.admin-table tr:hover td {
+/* Fondos */
+  background: rgba(201,162,39,.03);}
+
+.admin-table tr:last-child td {
+/* Bordes */
+  border-bottom: none;}
+
+.admin-btn {
+/* Relleno */
+  padding: 6px 14px;
+
+  /* Bordes */
+  border-radius: 6px;
+  border: 1px solid;
+
+  /* Fondos */
+  background: transparent;
+
+  /* Tipografía */
+  font-family: var(--font-ui);
+  font-size: .65rem;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  /* Transiciones y animaciones */
+  transition: all .2s;
+
+  /* Interactividad */
+  cursor: pointer;
+
+  /* Otras propiedades */
+  letter-spacing: .12em;}
+
+.admin-btn-edit {
+/* Bordes */
+  border-color: rgba(201,162,39,.3);
+
+  /* Colores y efectos */
+  color: var(--gold);}
+
+.admin-btn-edit:hover {
+/* Fondos */
+  background: rgba(201,162,39,.1);}
+
+.admin-btn-del {
+/* Bordes */
+  border-color: rgba(231,76,60,.3);
+
+  /* Colores y efectos */
+  color: #e74c3c;}
+
+.admin-btn-del:hover {
+/* Fondos */
+  background: rgba(231,76,60,.1);}
+
+.admin-btn-add {
+/* Modelo de caja */
+  display: inline-flex;
+
+  /* Flexbox y Grid */
+  align-items: center;
+  gap: 6px;
+
+  /* Márgenes */
+  margin-bottom: 20px;
+
+  /* Relleno */
+  padding: 8px 20px;
+
+  /* Bordes */
+  border-color: var(--gold);
+
+  /* Fondos */
+  background: var(--gold);
+
+  /* Colores y efectos */
+  color: var(--black);}
+
+.admin-btn-add:hover {
+/* Fondos */
+  background: var(--gold2);
+
+  /* Colores y efectos */
+  box-shadow: 0 6px 16px rgba(201,162,39,.3);
+
+  /* Otras propiedades */
+  transform: translateY(-2px);}
+
+.admin-form {
+/* Modelo de caja */
+  display: none;
+
+  /* Márgenes */
+  margin-bottom: 20px;
+
+  /* Relleno */
+  padding: 20px;
+
+  /* Bordes */
+  border: 1px solid rgba(201,162,39,.15);
+  border-radius: var(--radius-md);
+
+  /* Fondos */
+  background: var(--dark3);}
+
+.admin-form.active {
+/* Modelo de caja */
+  display: block;}
+
+.admin-form-row {
+/* Modelo de caja */
+  display: grid;
+
+  /* Flexbox y Grid */
+  gap: 12px;
+
+  /* Márgenes */
+  margin-bottom: 12px;
+
+  /* Otras propiedades */
+  grid-template-columns: 1fr 1fr;}
+
+.admin-form-row.full {
+/* Otras propiedades */
+  grid-template-columns: 1fr;}
+
+.admin-foto-upload {
+/* Modelo de caja */
+  display: flex;
+
+  /* Flexbox y Grid */
+  flex-direction: column;
+  gap: 8px;}

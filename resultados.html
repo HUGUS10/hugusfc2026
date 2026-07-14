@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados | HUGUS FC</title>
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="icon" href="/imag/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+  <nav class="solid" id="mainNav"><div class="nav-i"><a href="index.html" class="nav-brand"><div class="nav-brand-logo"><img src="/imag/logo.png" alt="H" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1.1rem;color:#C9A227\'>H</span>'"></div><div class="nav-brand-text">HUGUS FC</div></a><div class="nav-right"><a href="index.html" class="btn-nav-acceder"><i class="fas fa-arrow-left"></i> Inicio</a></div></div></nav>
+  <div class="page-wrap">
+    <div class="page-hero"><div class="breadcrumb"><a href="index.html">Inicio</a> / Resultados</div><h2 class="stit">&Uacute;LTIMOS <span class="g">RESULTADOS</span></h2></div>
+    <div class="si"><div class="resultados-grid" id="resultadosGrid"><div style="grid-column:1/-1" class="loading-state"><div class="loading-spinner"></div>Cargando...</div></div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">&copy; 2025 <span>HUGUS FC</span></div><div class="footer-copy">Dios &middot; Familia &middot; F&uacute;tbol</div></div></div></footer>
+  <script src="js/app.js"></script>
+  <script src="js/partidos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const partidos = await api('/api/partidos');
+      const resultados = partidos.filter(p => p.resultado).sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+      const grid = document.getElementById('resultadosGrid');
+      grid.innerHTML = resultados.length ? resultados.map(r => {
+        const [gL,gV] = r.resultado.split('-').map(Number);
+        const isWin=gL>gV, isDraw=gL===gV;
+        const gl = safeJSON(r.goles_local), gv = safeJSON(r.goles_visita);
+        const golesHTML = [...gl.map(g=>`<li><span class="gol-minuto">${g.min}'</span><span class="gol-jugador">${g.jug}</span><span class="gol-equipo">HUGUS</span></li>`),...gv.map(g=>`<li><span class="gol-minuto">${g.min}'</span><span class="gol-jugador">${g.jug}</span><span class="gol-equipo">${r.rival}</span></li>`)].join('');
+        return `<div class="resultado-card reveal"><div class="resultado-header"><div class="resultado-equipo">${escudoImg(ESCUDO,30)}<span class="resultado-nombre">HUGUS</span></div><div class="resultado-marcador"><span class="${isWin?'win':isDraw?'draw':'lose'}">${gL}</span> - <span class="${!isWin&&!isDraw?'win':isDraw?'draw':'lose'}">${gV}</span></div><div class="resultado-equipo" style="justify-content:flex-end"><span class="resultado-nombre">${r.rival.toUpperCase()}</span><div class="resultado-escudo-peq"><span>${r.rival.charAt(0)}</span></div></div></div><div class="resultado-body"><div class="resultado-fecha"><i class="far fa-clock"></i> ${formatDate(r.fecha)} · ${r.competencia}</div><ul class="goles-lista">${golesHTML||'<li style="color:var(--grey)">Sin detalle</li>'}</ul></div></div>`;
+      }).join('') : '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--grey);font-family:var(--font-ui)">Sin resultados registrados.</div>';
+      observeReveals();
+    });
+  </script>
+</body>
+</html>

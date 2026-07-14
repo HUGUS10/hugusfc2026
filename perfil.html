@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil | HUGUS FC</title>
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="icon" href="/imag/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+  <nav class="solid" id="mainNav"><div class="nav-i"><a href="index.html" class="nav-brand"><div class="nav-brand-logo"><img src="/imag/logo.png" alt="H" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1.1rem;color:#C9A227\'>H</span>'"></div><div class="nav-brand-text">HUGUS FC</div></a><div class="nav-right"><button class="btn-nav-acceder" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Salir</button></div></div></nav>
+  <div class="page-wrap">
+    <div class="page-hero"><div class="breadcrumb"><a href="index.html">Inicio</a> / Perfil</div><h2 class="stit">MI <span class="g">PERFIL</span></h2></div>
+    <div class="si" style="max-width:800px">
+      <div class="perfil-header">
+        <div class="perfil-avatar" id="perfilAvatar">U</div>
+        <div><div class="perfil-nombre" id="perfilNombre">Cargando...</div><div class="perfil-email" id="perfilEmail">...</div><div class="perfil-rol" id="perfilRol">Miembro</div></div>
+      </div>
+      <div class="perfil-grid">
+        <div class="perfil-card"><div class="perfil-card-title">Historial</div><p style="color:var(--grey2);font-size:.85rem">Tu historial de actividad, partidos vistos y noticias guardadas aparecer&aacute; aqu&iacute;.</p></div>
+        <div class="perfil-card"><div class="perfil-card-title">Preferencias</div><p style="color:var(--grey2);font-size:.85rem">Configura tus notificaciones y preferencias de contenido.</p></div>
+        <div class="perfil-card"><div class="perfil-card-title">Pedidos</div><p style="color:var(--grey2);font-size:.85rem"><a href="tienda.html" style="color:var(--gold)">Ir a la tienda</a> para ver tus pedidos.</p></div>
+        <div class="perfil-card"><div class="perfil-card-title">Seguridad</div><p style="color:var(--grey2);font-size:.85rem">Puedes cambiar tu contrase&ntilde;a desde aqu&iacute; (pr&oacute;ximamente).</p></div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">&copy; 2025 <span>HUGUS FC</span></div><div class="footer-copy">Dios &middot; Familia &middot; F&uacute;tbol</div></div></div></footer>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/perfil.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', loadPerfil);</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Oficial | HUGUS FC</title>
+  <meta name="theme-color" content="#0a0f0a">
+  <link rel="icon" href="/imag/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+  <nav class="solid" id="mainNav">
+    <div class="nav-i">
+      <a href="index.html" class="nav-brand"><div class="nav-brand-logo"><img src="/imag/logo.png" alt="H" onerror="this.outerHTML='<span style=\'font-family:Bebas Neue;font-size:1.1rem;color:#C9A227\'>H</span>'"></div><div class="nav-brand-text">HUGUS FC</div></a>
+      <div class="nav-right">
+        <a href="carrito.html" class="btn-nav-acceder" style="position:relative"><i class="fas fa-shopping-cart"></i> Carrito <span class="carrito-count" style="display:none;position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--red);color:var(--white);font-size:.55rem;font-family:Barlow;font-weight:700;align-items:center;justify-content:center">0</span></a>
+        <a href="index.html" class="btn-nav-acceder"><i class="fas fa-arrow-left"></i> Inicio</a>
+      </div>
+    </div>
+  </nav>
+  <div class="page-wrap">
+    <div class="page-hero"><div class="breadcrumb"><a href="index.html">Inicio</a> / Tienda</div><h2 class="stit">TIENDA <span class="g">OFICIAL</span></h2></div>
+    <div class="si"><div class="tienda-grid" id="tiendaGrid"><div class="loading-state"><div class="loading-spinner"></div>Cargando productos...</div></div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">&copy; 2025 <span>HUGUS FC</span></div><div class="footer-copy">Dios &middot; Familia &middot; F&uacute;tbol</div></div></div></footer>
+  <script src="js/app.js"></script>
+  <script src="js/tienda.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { loadTienda(); updateCarritoCount(); });</script>
+</body>
+</html>

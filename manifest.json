@@ -1,0 +1,17 @@
+{
+  "name": "HUGUS FC",
+  "short_name": "HUGUS",
+  "description": "Web oficial del club de fútbol HUGUS FC. Dios · Familia · Fútbol.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f0a",
+  "theme_color": "#0a0f0a",
+  "icons": [
+    {
+      "src": "/imag/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
