@@ -31,8 +31,10 @@ export default {
       } else if (method === 'POST') {
         if (path === '/api/auth/login') {
           const {email, password} = await request.json();
-          const u = await env.DB.prepare('SELECT * FROM usuarios WHERE email=? AND password=?').bind(email, password).first();
+          const u = await env.DB.prepare('SELECT * FROM usuarios WHERE email=?').bind(email).first();
           if (!u) return json({error:'Correo o contraseña incorrectos'}, 401, corsHeaders);
+          const ok = await verifyPassword(password, u.password);
+          if (!ok) return json({error:'Correo o contraseña incorrectos'}, 401, corsHeaders);
           const token = 'tk_'+Date.now().toString(36)+'_'+Math.random().toString(36).substr(2,8);
           await env.DB.prepare('INSERT INTO sesiones (token, usuario_id, expira) VALUES (?,?,?)').bind(token, u.id, new Date(Date.now()+7*86400000).toISOString()).run();
           return json({token, user:{id:u.id,nombre:u.nombre,email:u.email,rol:u.rol}}, 200, corsHeaders);
@@ -42,7 +44,8 @@ export default {
           const ex = await env.DB.prepare('SELECT id FROM usuarios WHERE email=?').bind(email).first();
           if (ex) return json({error:'Correo ya registrado'}, 409, corsHeaders);
           const id = 'u_'+Date.now().toString(36);
-          await env.DB.prepare('INSERT INTO usuarios (id,nombre,email,password,rol) VALUES (?,?,?,?,?)').bind(id, nombre, email, password, 'user').run();
+          const hashed = await hashPassword(password);
+          await env.DB.prepare('INSERT INTO usuarios (id,nombre,email,password,rol) VALUES (?,?,?,?,?)').bind(id, nombre, email, hashed, 'user').run();
           const token = 'tk_'+Date.now().toString(36)+'_r'+Math.random().toString(36).substr(2,6);
           await env.DB.prepare('INSERT INTO sesiones (token, usuario_id, expira) VALUES (?,?,?)').bind(token, id, new Date(Date.now()+7*86400000).toISOString()).run();
           return json({token, user:{id, nombre, email, rol:'user'}}, 201, corsHeaders);
@@ -65,7 +68,7 @@ export default {
           let id, tabla, campos, valores;
           if (path === '/api/admin/noticias') { tabla='noticias'; campos='id,titulo,categoria,fecha,resumen,imagen'; valores=[id='n_'+Date.now().toString(36), body.titulo, body.categoria, body.fecha, body.resumen, body.imagen||'']; }
           else if (path === '/api/admin/partidos') { tabla='partidos'; campos='id,rival,fecha,lugar,competencia,goles_local,goles_visita,resultado'; valores=[id='p_'+Date.now().toString(36), body.rival, body.fecha, body.lugar||'', body.competencia||'', '[]', '[]', null]; }
-          else if (path === '/api/admin/jugadores') { tabla='jugadores'; campos='id,nombre,posicion,numero,detalle'; valores=[id='j_'+Date.now().toString(36), body.nombre, body.posicion, body.numero, body.detalle||'']; }
+          else if (path === '/api/admin/jugadores') { tabla='jugadores'; campos='id,nombre,posicion,numero,detalle,foto'; valores=[id='j_'+Date.now().toString(36), body.nombre, body.posicion, body.numero, body.detalle||'', body.foto||'']; }
           else if (path === '/api/admin/tabla') { tabla='tabla_posiciones'; campos='id,nombre,inicial,jg,je,jp,gf,gc'; valores=[id='t_'+Date.now().toString(36), body.nombre, body.inicial, body.jg||0, body.je||0, body.jp||0, body.gf||0, body.gc||0]; }
           else if (path === '/api/admin/productos') { tabla='productos'; campos='id,nombre,precio,descripcion,imagen,categoria,orden'; valores=[id='pr_'+Date.now().toString(36), body.nombre, body.precio, body.descripcion||'', body.imagen||'', body.categoria||'', body.orden||0]; }
           else return json({error:'Ruta no encontrada'}, 404, corsHeaders);
@@ -95,6 +98,40 @@ export default {
     } catch(err) { return json({error:err.message}, 500, corsHeaders); }
   }
 };
+
 function json(d,s=200,h={}){ return new Response(JSON.stringify(d),{status:s,headers:{'Content-Type':'application/json',...h}}); }
-async function verifyAdmin(r,e){ const t=(r.headers.get('Authorization')||'').replace('Bearer ',''); if(!t)return false; const s=await e.DB.prepare('SELECT s.*,u.rol FROM sesiones s JOIN usuarios u ON s.usuario_id=u.id WHERE s.token=? AND s.expira>datetime("now") AND u.rol=?').bind(t,'admin').first(); return !!s; }
+
+async function verifyAdmin(r,e){
+  const t=(r.headers.get('Authorization')||'').replace('Bearer ','');
+  if(!t)return false;
+  const s=await e.DB.prepare('SELECT s.*,u.rol FROM sesiones s JOIN usuarios u ON s.usuario_id=u.id WHERE s.token=? AND s.expira>datetime("now") AND u.rol=?').bind(t,'admin').first();
+  return !!s;
+}
+
 async function serveStatic(u){ const p=u.pathname==='/'?'/index.html':u.pathname; try{const r=await fetch(new Request(p));if(r.status===200)return r;}catch(e){} return json({error:'No encontrado'},404); }
+
+// ── Hashing de contraseñas (PBKDF2 + salt, con Web Crypto nativo de Workers) ──
+
+async function hashPassword(password) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const key = await deriveKey(password, salt);
+  return bufToHex(salt) + ':' + bufToHex(new Uint8Array(key));
+}
+
+async function verifyPassword(password, stored) {
+  if (!stored || !stored.includes(':')) return false; // password antigua sin hash
+  const [saltHex, hashHex] = stored.split(':');
+  const salt = hexToBuf(saltHex);
+  const key = await deriveKey(password, salt);
+  const computedHex = bufToHex(new Uint8Array(key));
+  return computedHex === hashHex;
+}
+
+async function deriveKey(password, salt) {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), {name:'PBKDF2'}, false, ['deriveBits']);
+  return await crypto.subtle.deriveBits({name:'PBKDF2', salt, iterations:100000, hash:'SHA-256'}, keyMaterial, 256);
+}
+
+function bufToHex(buf) { return Array.from(buf).map(b => b.toString(16).padStart(2,'0')).join(''); }
+function hexToBuf(hex) { const b=new Uint8Array(hex.length/2); for(let i=0;i<b.length;i++) b[i]=parseInt(hex.substr(i*2,2),16); return b; }
